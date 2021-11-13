@@ -14,7 +14,7 @@
 
 	<pair name="AUTORUNS"  value="7z:#Tools|autorunsc.exe" />
 
-        <archive name="Tools" format="7z" compression="Ultra">
+    <archive name="Tools" format="7z" compression="Ultra">
 		<file name="DFIR-Orc_x64.exe" path=".\tools\DFIR-Orc_x64.exe"/>
 
 		<file name="handle.exe" path=".\tools\handle.exe"/>
