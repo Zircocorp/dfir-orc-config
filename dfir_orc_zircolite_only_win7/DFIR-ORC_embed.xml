@@ -22,7 +22,7 @@
 		<file name="Tcpvcon.exe" path=".\tools\Tcpvcon.exe"/>
 		<file name="PsService.exe" path=".\tools\PsService.exe"/>
 		<file name="Listdlls.exe" path=".\tools\Listdlls.exe"/>
-		<file name="zircolite.exe" path=".\tools\zircolite_win7.exe"/>
+		<file name="zircolite_win7.exe" path=".\tools\zircolite_win7.exe"/>
 		<file name="evtx_dump.exe" path=".\tools\evtx_dump.exe"/>
 		<file name="dumpit" path=".\tools\DumpIt.exe" />
 		<file name="winpmem" path=".\tools\winpmem.exe" />

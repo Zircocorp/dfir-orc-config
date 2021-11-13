@@ -7,7 +7,7 @@
     <archive name="DFIR-ORC_{SystemType}_{FullComputerName}_Zircolite.7z" keyword="Zircolite" concurrency="2" repeat="Once" compression="fast" archive_timeout="120" >
         <restrictions ElapsedTimeLimit="480" />
         <command keyword="GetZircolite">
-            <execute name="zircolite.exe" run="7z:#Tools|zircolite.exe"/>
+            <execute name="zircolite_win7.exe" run="7z:#Tools|zircolite_win7.exe"/>
             <input  name='rules_windows_sysmon.json' source='res:#rules_windows_sysmon.json' argument='-r {FileName}' />
 			<input  name='fieldMappings.json' source='res:#fieldMappings.json' argument='-c {FileName}' />
 			<input  name='evtx_dump.exe' source='7z:#Tools|evtx_dump.exe' argument='-c {FileName}' />
