@@ -8,18 +8,15 @@
         <restrictions ElapsedTimeLimit="480" />
         <command keyword="GetEvtxDumpApplication">
             <execute name="evtx_dump.exe" run="7z:#Tools|evtx_dump.exe"/>
-            <argument>-o jsonl C:\windows\System32\winevt\Logs\Application.evtx</argument>
-            <output  name="application.json" source="stdout" />
+            <argument>-o jsonl -f application.json C:\windows\System32\winevt\Logs\Application.evtx</argument>
         </command>
         <command keyword="GetEvtxDumpSecurity">
             <execute name="evtx_dump.exe" run="7z:#Tools|evtx_dump.exe"/>
-            <argument>-o jsonl C:\windows\System32\winevt\Logs\Security.evtx</argument>
-            <output  name="security.json" source="stdout" />
+            <argument>-o jsonl -f security.json C:\windows\System32\winevt\Logs\Security.evtx</argument>
         </command>
         <command keyword="GetEvtxDumpSystem">
             <execute name="evtx_dump.exe" run="7z:#Tools|evtx_dump.exe"/>
-            <argument>-o jsonl C:\windows\System32\winevt\Logs\System.evtx</argument>
-            <output  name="system.json" source="stdout" />
+            <argument>-o jsonl -f system.json C:\windows\System32\winevt\Logs\System.evtx</argument>
         </command>
         <command keyword="GetZircoliteWinAudit"  winver="6.2+" >
             <execute name="zircolite_win10_nuitka.exe" run="7z:#Tools|zircolite_win10_nuitka.exe"/>
