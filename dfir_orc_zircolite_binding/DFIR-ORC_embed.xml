@@ -14,7 +14,7 @@
 
 	<pair name="AUTORUNS"  value="7z:#Tools|autorunsc.exe" />
 
-        <archive name="Tools" format="7z" compression="Ultra">
+    <archive name="Tools" format="7z" compression="Ultra">
 		<file name="DFIR-Orc_x64.exe" path=".\tools\DFIR-Orc_x64.exe"/>
 
 		<file name="handle.exe" path=".\tools\handle.exe"/>
@@ -22,8 +22,8 @@
 		<file name="Tcpvcon.exe" path=".\tools\Tcpvcon.exe"/>
 		<file name="PsService.exe" path=".\tools\PsService.exe"/>
 		<file name="Listdlls.exe" path=".\tools\Listdlls.exe"/>
+		<file name="zircolite_win10_nuitka.exe" path=".\tools\zircolite_win10_nuitka.exe"/>
 		<file name="zircolite_win7.exe" path=".\tools\zircolite_win7.exe"/>
-		<file name="evtx_dump.exe" path=".\tools\evtx_dump.exe"/>
 		<file name="dumpit" path=".\tools\DumpIt.exe" />
 		<file name="winpmem" path=".\tools\winpmem.exe" />
 
