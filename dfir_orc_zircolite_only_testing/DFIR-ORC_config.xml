@@ -8,7 +8,8 @@
         <restrictions ElapsedTimeLimit="480" />
         <command keyword="GetEvtxDump">
             <execute name="evtx_dump.exe" run="7z:#Tools|evtx_dump.exe"/>
-            <argument>-o jsonl -f sysmon.json C:\windows\System32\winevt\Logs\Microsoft-Windows-Sysmon%4Operational.evtx</argument>
+            <argument>-o jsonl C:\windows\System32\winevt\Logs\Microsoft-Windows-Sysmon%4Operational.evtx</argument>
+            <output  name="sysmon.json" source="stdout" />
         </command>
         <command keyword="GetZircoliteSysmon">
             <execute name="zircolite_win10_nuitka.exe" run="7z:#Tools|zircolite_win10_nuitka.exe"/>
@@ -17,6 +18,7 @@
             <argument>--select "sysmon" --cores 1 -e sysmon.json --jsononly</argument>
             <output  name="detected_events_sysmon.json" source="File" argument="-o {FileName}" />
             <output  name="zircolite_sysmon.log" source="File" argument="-l {FileName}" />
+            <output  name="sysmon.json" source="File" />
         </command>
     </archive>
 
