@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<wolf childdebug="no" command_timeout="600">
+    <log disposition="truncate">DFIR-ORC_{SystemType}_{FullComputerName}_{TimeStamp}.log</log>
+    <outline disposition="truncate">DFIR-ORC_{SystemType}_{FullComputerName}_{TimeStamp}.json</outline>
+
+    <archive name="DFIR-ORC_{SystemType}_{FullComputerName}_Zircolite.7z" keyword="Zircolite" concurrency="1" repeat="Once" compression="fast" archive_timeout="120" >
+        <restrictions ElapsedTimeLimit="480" />
+        <command keyword="GetEvtxDumpApplication">
+            <execute name="evtx_dump.exe" run="7z:#Tools|evtx_dump.exe"/>
+            <argument>-o jsonl C:\windows\System32\winevt\Logs\Application.evtx</argument>
+            <output  name="application.json" source="stdout" />
+        </command>
+        <command keyword="GetEvtxDumpSecurity">
+            <execute name="evtx_dump.exe" run="7z:#Tools|evtx_dump.exe"/>
+            <argument>-o jsonl C:\windows\System32\winevt\Logs\Security.evtx</argument>
+            <output  name="security.json" source="stdout" />
+        </command>
+        <command keyword="GetEvtxDumpSystem">
+            <execute name="evtx_dump.exe" run="7z:#Tools|evtx_dump.exe"/>
+            <argument>-o jsonl C:\windows\System32\winevt\Logs\System.evtx</argument>
+            <output  name="system.json" source="stdout" />
+        </command>
+        <command keyword="GetZircoliteWinAudit"  winver="6.2+" >
+            <execute name="zircolite_win10_nuitka.exe" run="7z:#Tools|zircolite_win10_nuitka.exe"/>
+            <input  name='rules_windows_generic.json' source='res:#rules_windows_generic.json' argument='-r {FileName}' />
+            <input  name='fieldMappings.json' source='res:#fieldMappings.json' argument='-c {FileName}' />
+            <argument>--cores 1 -e application.json -e security.json -e system.json --jsononly</argument>
+            <output  name="detected_events_winaudit.json" source="File" argument="-o {FileName}" />
+            <output  name="zircolite_winaudit.log" source="File" argument="-l {FileName}" />
+        </command>
+        <command keyword="GetZircoliteWinAuditWin7"  winver="6.1-" >
+            <execute name="zircolite_win7.exe" run="7z:#Tools|zircolite_win7.exe"/>
+            <input  name='rules_windows_generic.json' source='res:#rules_windows_generic.json' argument='-r {FileName}' />
+            <input  name='fieldMappings.json' source='res:#fieldMappings.json' argument='-c {FileName}' />
+            <argument>--cores 1 -e application.json -e security.json -e system.json --jsononly</argument>
+            <output  name="detected_events_winaudit.json" source="File" argument="-o {FileName}" />
+            <output  name="zircolite_winaudit.log" source="File" argument="-l {FileName}" />
+        </command>
+    </archive>
+
+</wolf>

@@ -11,14 +11,21 @@
             <argument>-o jsonl C:\windows\System32\winevt\Logs\Microsoft-Windows-Sysmon%4Operational.evtx</argument>
             <output  name="sysmon.json" source="stdout" />
         </command>
-        <command keyword="GetZircoliteSysmon">
+        <command keyword="GetZircoliteSysmon"  winver="6.2+" >
             <execute name="zircolite_win10_nuitka.exe" run="7z:#Tools|zircolite_win10_nuitka.exe"/>
             <input  name='rules_windows_sysmon.json' source='res:#rules_windows_sysmon.json' argument='-r {FileName}' />
             <input  name='fieldMappings.json' source='res:#fieldMappings.json' argument='-c {FileName}' />
             <argument>--select "sysmon" --cores 1 -e sysmon.json --jsononly</argument>
             <output  name="detected_events_sysmon.json" source="File" argument="-o {FileName}" />
             <output  name="zircolite_sysmon.log" source="File" argument="-l {FileName}" />
-            <output  name="sysmon.json" source="File" />
+        </command>
+        <command keyword="GetZircoliteSysmonWin7"  winver="6.1-" >
+            <execute name="zircolite_win7.exe" run="7z:#Tools|zircolite_win7.exe"/>
+            <input  name='rules_windows_sysmon.json' source='res:#rules_windows_sysmon.json' argument='-r {FileName}' />
+            <input  name='fieldMappings.json' source='res:#fieldMappings.json' argument='-c {FileName}' />
+            <argument>--select "sysmon" --cores 1 -e sysmon.json --jsononly</argument>
+            <output  name="detected_events_sysmon.json" source="File" argument="-o {FileName}" />
+            <output  name="zircolite_sysmon.log" source="File" argument="-l {FileName}" />
         </command>
     </archive>
 

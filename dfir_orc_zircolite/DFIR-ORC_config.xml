@@ -6,7 +6,7 @@
 
     <archive name="DFIR-ORC_{SystemType}_{FullComputerName}_Zircolite.7z" keyword="Zircolite" concurrency="1" repeat="Once" compression="fast" archive_timeout="120" >
         <restrictions ElapsedTimeLimit="480" />
-        <command keyword="GetZircoliteSysmon" winver="6.2+">
+        <command keyword="GetZircoliteSysmon" winver="6.2+" >
             <execute name="zircolite_win10_nuitka.exe" run="7z:#Tools|zircolite_win10_nuitka.exe"/>
             <input  name='rules_windows_sysmon.json' source='res:#rules_windows_sysmon.json' argument='-r {FileName}' />
             <input  name='fieldMappings.json' source='res:#fieldMappings.json' argument='-c {FileName}' />
@@ -15,7 +15,7 @@
             <output  name="detected_events_sysmon.json" source="File" argument="-o {FileName}" />
             <output  name="zircolite_sysmon.log" source="File" argument="-l {FileName}" />
         </command>
-        <command keyword="GetZircoliteWinAudit" winver="6.2+">
+        <command keyword="GetZircoliteWinAudit" winver="6.2+" >
             <execute name="zircolite_win10_nuitka.exe" run="7z:#Tools|zircolite_win10_nuitka.exe"/>
             <input  name='rules_windows_generic.json' source='res:#rules_windows_generic.json' argument='-r {FileName}' />
             <input  name='fieldMappings.json' source='res:#fieldMappings.json' argument='-c {FileName}' />
@@ -24,7 +24,7 @@
             <output  name="detected_events_winaudit.json" source="File" argument="-o {FileName}" />
             <output  name="zircolite_winaudit.log" source="File" argument="-l {FileName}" />
         </command>
-        <command keyword="GetZircoliteSysmonWin7" winver="6.1-">
+        <command keyword="GetZircoliteSysmonWin7" winver="6.1-" >
             <execute name="zircolite_win7.exe" run="7z:#Tools|zircolite_win7.exe"/>
             <input  name='rules_windows_sysmon.json' source='res:#rules_windows_sysmon.json' argument='-r {FileName}' />
             <input  name='fieldMappings.json' source='res:#fieldMappings.json' argument='-c {FileName}' />
@@ -33,7 +33,7 @@
             <output  name="detected_events_sysmon.json" source="File" argument="-o {FileName}" />
             <output  name="zircolite_sysmon.log" source="File" argument="-l {FileName}" />
         </command>
-        <command keyword="GetZircoliteWinAuditWin7" winver="6.1-">
+        <command keyword="GetZircoliteWinAuditWin7" winver="6.1-" >
             <execute name="zircolite_win7.exe" run="7z:#Tools|zircolite_win7.exe"/>
             <input  name='rules_windows_generic.json' source='res:#rules_windows_generic.json' argument='-r {FileName}' />
             <input  name='fieldMappings.json' source='res:#fieldMappings.json' argument='-c {FileName}' />
