@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<toolembed>
+	<input>.\tools\DFIR-Orc_x86.exe</input>
+	<output>.\output\%ORC_OUTPUT%</output>
+
+	<run64 args="WolfLauncher" >7z:#Tools|DFIR-Orc_x64.exe</run64>
+	<run32 args="WolfLauncher" >self:#</run32>
+
+	<file name="WOLFLAUNCHER_CONFIG" path=".\%ORC_CONFIG_FOLDER%\DFIR-ORC_config.xml"/>
+
+	<file name="rules_windows_generic.json" path=".\%ORC_CONFIG_FOLDER%\rules_windows_generic.json" />
+	<file name="rules_windows_sysmon.json" path=".\%ORC_CONFIG_FOLDER%\rules_windows_sysmon.json" />
+	<file name="fieldMappings.json" path=".\%ORC_CONFIG_FOLDER%\fieldMappings.json" />
+
+	<pair name="AUTORUNS"  value="7z:#Tools|autorunsc.exe" />
+
+    <archive name="Tools" format="7z" compression="Ultra">
+		<file name="DFIR-Orc_x64.exe" path=".\tools\DFIR-Orc_x64.exe"/>
+
+		<file name="handle.exe" path=".\tools\handle.exe"/>
+		<file name="autorunsc.exe" path=".\tools\autorunsc.exe"/>
+		<file name="Tcpvcon.exe" path=".\tools\Tcpvcon.exe"/>
+		<file name="PsService.exe" path=".\tools\PsService.exe"/>
+		<file name="Listdlls.exe" path=".\tools\Listdlls.exe"/>
+		<file name="zircolite_win10_nuitka.exe" path=".\tools\zircolite_win10_nuitka.exe"/>
+		<file name="evtx_dump.exe" path=".\tools\evtx_dump.exe"/>
+		<file name="dumpit" path=".\tools\DumpIt.exe" />
+		<file name="winpmem" path=".\tools\winpmem.exe" />
+
+	</archive>
+</toolembed>

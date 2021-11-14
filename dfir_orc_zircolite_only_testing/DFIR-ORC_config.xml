@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<wolf childdebug="no" command_timeout="600">
+    <log disposition="truncate">DFIR-ORC_{SystemType}_{FullComputerName}_{TimeStamp}.log</log>
+    <outline disposition="truncate">DFIR-ORC_{SystemType}_{FullComputerName}_{TimeStamp}.json</outline>
+
+    <archive name="DFIR-ORC_{SystemType}_{FullComputerName}_Zircolite.7z" keyword="Zircolite" concurrency="1" repeat="Once" compression="fast" archive_timeout="120" >
+        <restrictions ElapsedTimeLimit="480" />
+        <command keyword="GetEvtxDump">
+            <execute name="evtx_dump.exe" run="7z:#Tools|evtx_dump.exe"/>
+            <argument>-o jsonl -f sysmon.json C:\windows\System32\winevt\Logs\Microsoft-Windows-Sysmon%4Operational.evtx</argument>
+        </command>
+        <command keyword="GetZircoliteSysmon">
+            <execute name="zircolite_win10_nuitka.exe" run="7z:#Tools|zircolite_win10_nuitka.exe"/>
+            <input  name='rules_windows_sysmon.json' source='res:#rules_windows_sysmon.json' argument='-r {FileName}' />
+            <input  name='fieldMappings.json' source='res:#fieldMappings.json' argument='-c {FileName}' />
+            <argument>--select "sysmon" --cores 1 -e sysmon.json --jsononly</argument>
+            <output  name="detected_events_sysmon.json" source="File" argument="-o {FileName}" />
+            <output  name="zircolite_sysmon.log" source="File" argument="-l {FileName}" />
+        </command>
+    </archive>
+
+</wolf>
