@@ -4,15 +4,23 @@
     <log disposition="truncate">DFIR-ORC_{SystemType}_{FullComputerName}_{TimeStamp}.log</log>
     <outline disposition="truncate">DFIR-ORC_{SystemType}_{FullComputerName}_{TimeStamp}.json</outline>
 
-    <archive name="DFIR-ORC_{SystemType}_{FullComputerName}_Zircolite.7z" keyword="Zircolite" concurrency="2" repeat="Once" compression="fast" archive_timeout="120" >
+    <archive name="DFIR-ORC_{SystemType}_{FullComputerName}_Zircolite.7z" keyword="Zircolite" concurrency="1" repeat="Once" compression="fast" archive_timeout="120" >
         <restrictions ElapsedTimeLimit="480" />
-        <command keyword="GetZircolite">
+        <command keyword="GetZircoliteSysmon">
             <execute name="zircolite_win10_nuitka.exe" run="7z:#Tools|zircolite_win10_nuitka.exe"/>
             <input  name='rules_windows_sysmon.json' source='res:#rules_windows_sysmon.json' argument='-r {FileName}' />
             <input  name='fieldMappings.json' source='res:#fieldMappings.json' argument='-c {FileName}' />
-            <argument>--cores 1 -e C:\windows\System32\winevt\Logs</argument>
-            <output  name="detected_events.json" source="File" argument="-o {FileName}" />
-            <output  name="zircolite.log" source="File" argument="-l {FileName}" />
+            <argument>--select "sysmon" --cores 1 -e C:\windows\System32\winevt\Logs</argument>
+            <output  name="detected_events_sysmon.json" source="File" argument="-o {FileName}" />
+            <output  name="zircolite_sysmon.log" source="File" argument="-l {FileName}" />
+        </command>
+        <command keyword="GetZircoliteWinAudit">
+            <execute name="zircolite_win10_nuitka.exe" run="7z:#Tools|zircolite_win10_nuitka.exe"/>
+            <input  name='rules_windows_generic.json' source='res:#rules_windows_generic.json' argument='-r {FileName}' />
+            <input  name='fieldMappings.json' source='res:#fieldMappings.json' argument='-c {FileName}' />
+            <argument>--avoid "sysmon" --cores 1 -e C:\windows\System32\winevt\Logs</argument>
+            <output  name="detected_events_winaudit.json" source="File" argument="-o {FileName}" />
+            <output  name="zircolite_winaudit.log" source="File" argument="-l {FileName}" />
         </command>
     </archive>
 
