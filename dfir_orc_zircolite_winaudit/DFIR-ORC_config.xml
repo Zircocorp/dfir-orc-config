@@ -6,6 +6,10 @@
 
     <archive name="DFIR-ORC_{SystemType}_{FullComputerName}_Zircolite.7z" keyword="Zircolite" concurrency="1" repeat="Once" compression="fast" archive_timeout="120" >
         <restrictions ElapsedTimeLimit="480" />
+        <command keyword="GetEVT">
+            <execute name="Orc.exe" run="self:#GetThis" />
+            <argument>/nolimits /config=res:#GetEVT_config.xml /out=./TEST/</argument>
+        </command>
         <command keyword="GetEvtxDumpApplication">
             <execute name="evtx_dump.exe" run="7z:#Tools|evtx_dump.exe"/>
             <argument>-o jsonl -f application.json C:\windows\System32\winevt\Logs\Application.evtx</argument>
