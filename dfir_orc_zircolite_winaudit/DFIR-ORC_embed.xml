@@ -9,7 +9,6 @@
 	<file name="WOLFLAUNCHER_CONFIG" path=".\%ORC_CONFIG_FOLDER%\DFIR-ORC_config.xml"/>
 
 	<file name="rules_windows_generic.json" path=".\%ORC_CONFIG_FOLDER%\rules_windows_generic.json" />
-	<file name="rules_windows_sysmon.json" path=".\%ORC_CONFIG_FOLDER%\rules_windows_sysmon.json" />
 	<file name="fieldMappings.json" path=".\%ORC_CONFIG_FOLDER%\fieldMappings.json" />
 
 	<pair name="AUTORUNS"  value="7z:#Tools|autorunsc.exe" />
